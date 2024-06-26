@@ -1,12 +1,12 @@
+#import
 import random
 import time
 
+#Starting Code
 text = ("shaking.... \n")
- 
-answer1=("Absolutely!")
-answer2=("Yes...")
-answer3=("Go for it tiger.")
+answers = ["Yes.", "No.", "Absolutely!", "No waaaayyy!"]
 
+#the games code
 def game():
         
     print("")
@@ -26,46 +26,30 @@ def game():
 
             print(" ")
     
-    choice=random.randint(1,3)
+    choice=random.randint(1,4)
 
     time.sleep(2)
 
 
-    if choice == 1:
-        answer=answer1
-    elif choice == 2:
-        answer=answer2
-    else:
-        answer=answer3
+    choice = random.choice(answers)
 
 
     for i in range(1):
-            for char in answer:
+            for char in choice:
                 print(char, end='', flush=True)
                 time.sleep(0.1)
             print("")
 
-#GAME ON!
-
-
-
-
-
+#Game Ending
 while True:
 
-    print(game())
-
-    print("")
-     
-    tryagain = input("Type 'y' to play again and anything to stop ")
+    game()
 
     print("")
 
-    if tryagain == ("y"):
-        print("Alright lets go again!")
-        continue
+    play_again = input("Do you want to play again? (yes/no): ")
 
-    else:
+    if play_again.lower() != "yes":
         print("Bye then...")
         print("")
         break
