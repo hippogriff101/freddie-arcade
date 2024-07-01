@@ -15,6 +15,8 @@ items = [itemsgained, itemsneeded]
 
 inv = [itemsneeded,]
 
+marketgames = ["drone", "npc", "gard"]
+
 health = (10)
 
 #charcters & more
@@ -31,11 +33,25 @@ def drone():
     print("You see a drone in the distance...")
     print("By fighting it you gain a new item but risk losing...")
     while True:
-        dronefight = input("Do you want to fight the drone? (yes/no)")
+        dronefight = input("Do you want to fight the drone? (yes/no): ")
         if dronefight == ("yes"):
             print("let the fight begin")
-        if dronefight == ("no"):
+            #fight logic here
+            continue
+        elif dronefight == ("no"):
             print("Alright let's go a differant direction.")
+        
+            dirtwo = random.choice(marketgames)
+
+            if dirtwo == ("drone"):
+                gard()
+                break
+            elif dirtwo == ("npc"):
+                npc()
+                break
+            elif dirtwo == ("gard"):
+                gard()
+                break
 
 def npc():
     print("NEED TO FINISH!")
@@ -78,33 +94,33 @@ def hideout():
     print("Your going to go to the", nextroom)
     
 def market():
-    print("Welcome to The Market, you have to navigate through the stalls to find and exit.")
-    print("Hopfully you won't encountor any gaurds")
-
-    dir = input("Do you want to go left right or straight? (left, right, straight): ")
+    print("Welcome to The Market, you have to navigate through the stalls to find the exit.")
 
     while True:
+
+        dir = input("Do you want to go left right or straight? (left, right, straight): ")
+
         if dir == ("left"):
             print("You choose left.")
-            continue
+            break
         elif dir == ("right"):
             print("You choose right.")
-            continue
+            break
         elif dir == ("straight"):
             print("You choose straight.")
-            continue
+            break
         else:
             print("I'm sorry I dont know that?")
 
-        marketgames = ["drone", "npc", "gard"]
+    marketplot = random.choice(marketgames)
 
-        marketplot = random.choice(marketgames)
-        while True:
-            if marketplot == ("drone"):
-                drone()
-            elif marketplot == ("npc"):
-                npc()
-            elif marketplot == ("gard"):
-                gard()
 
-market()
+    if marketplot == ("drone"):
+        drone()
+    elif marketplot == ("npc"):
+        npc()
+    elif marketplot == ("gard"):
+        gard()
+    
+    print("TEST!")
+     
