@@ -17,7 +17,7 @@ inv = [itemsneeded,]
 
 marketgames = ["drone", "npc", "gard"]
 
-health = (10)
+health = 10
 
 #charcters & more
 def loading():
@@ -30,14 +30,53 @@ def loading():
 
 def drone():
 
-    print("You see a drone in the distance...")
-    print("By fighting it you gain a new item but risk losing...")
+    dronehealth = 4
+    global health
+
     while True:
+
+        print("You see a drone in the distance...")
+        print("By fighting it you gain a new item but risk losing...")
+
+    
         dronefight = input("Do you want to fight the drone? (yes/no): ")
+
         if dronefight == ("yes"):
-            print("let the fight begin")
-            #fight logic here
-            continue
+            print("Let the fight begin...")
+
+            print("You can go about this two ways.") 
+            print("Sneak up and take out the drone,")
+            print("Or battle for better loot.")
+            dronecho = input("Do you, 'sneak' or 'battle'? : ")
+            if dronecho == ("sneak"):
+                print("You manover behind a stall.")
+                print("Slowly, you stalk through the cover of the bright flashing loights of the futuristic bilboads.")
+                print("Ahead you see the drone, wirng as it scans the pasers by.")
+                print("Time to aim,")
+                shot = int(input("Press '1' to fire: "))
+                if shot == 1:
+                    print("CRITICAL HIT!")
+                    print("The drone is down to half health")
+                    dronehealth -= 2
+                else:
+                    print("You gave away your cover!")
+                    
+            elif dronecho == ("battle"):
+                print("You charge at the drone!")
+                print("It hits you!")
+                health -= 1
+                print("Your heath is now at", health)
+                shot = int(input("Press '1' to fire: "))
+                if shot == 1:
+                    print("CRITICAL HIT!")
+                    print("The drone is down to half health")
+                    dronehealth -= 2
+                else:
+                    print("You missed!")
+            else:
+                print("I'm sorry I dont know that?")
+
+            #Reast fo drone fight!
         elif dronefight == ("no"):
             print("Alright let's go a differant direction.")
         
@@ -52,19 +91,21 @@ def drone():
             elif dirtwo == ("gard"):
                 gard()
                 break
-
+        else:
+           print("I'm sorry I don't know that?")
 def npc():
     print("NEED TO FINISH!")
-
 def gard():
     print("NEED TO FINISH!")
+
+
 #rooms
 def hideout():
 
     print("Welcome to your hideout, this is your control center.")
     print("Once you leave here you cant come back until the end of your mission")
     print("I'm your AI assistant, I will be guiding you through your mission.")
-    print(" I'm sure my programmer gave you the heads down before you woke up here.")
+    print(" I'm sure my programmer gave you the heads up before you woke up here.")
 
     print("At points during the mission I will ask you if you want to see your inventry")
 
@@ -121,6 +162,5 @@ def market():
         npc()
     elif marketplot == ("gard"):
         gard()
-    
-    print("TEST!")
-     
+               
+drone()
