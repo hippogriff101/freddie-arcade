@@ -32,67 +32,131 @@ def drone():
 
     dronehealth = 4
     global health
+    global marketgames
+    global npc 
+    global gard
+    while dronehealth > 0 and health > 0:
+        while True:
 
-    while True:
+            print("You see a drone in the distance...")
+            print("By fighting it you gain a new item but risk losing...")
 
-        print("You see a drone in the distance...")
-        print("By fighting it you gain a new item but risk losing...")
 
-    
-        dronefight = input("Do you want to fight the drone? (yes/no): ")
+            dronefight = input("Do you want to fight the drone? (yes/no): ")
 
-        if dronefight == ("yes"):
-            print("Let the fight begin...")
+            if dronefight == ("yes"):
+                
+                print("Let the fight begin...")
 
-            print("You can go about this two ways.") 
-            print("Sneak up and take out the drone,")
-            print("Or battle for better loot.")
-            dronecho = input("Do you, 'sneak' or 'battle'? : ")
-            if dronecho == ("sneak"):
-                print("You manover behind a stall.")
-                print("Slowly, you stalk through the cover of the bright flashing loights of the futuristic bilboads.")
-                print("Ahead you see the drone, wirng as it scans the pasers by.")
-                print("Time to aim,")
-                shot = int(input("Press '1' to fire: "))
-                if shot == 1:
-                    print("CRITICAL HIT!")
-                    print("The drone is down to half health")
-                    dronehealth -= 2
-                else:
-                    print("You gave away your cover!")
+                print("You can go about this two ways.") 
+                print("Sneak up and take out the drone,")
+                print("Or battle for better loot.")
+                while True:
+                    dronecho = input("Do you, 'sneak' or 'battle'? : ")
+                    if dronecho == ("sneak"):
+                        print("You manover behind a stall.")
+                        print("Slowly, you stalk through the cover of the bright flashing loights of the futuristic bilboads.")
+                        print("Ahead you see the drone, wirng as it scans the pasers by.")
+                        print("Time to aim,")
+                        shot = int(input("Press '1' to fire: "))
+                        if shot == 1:
+                            print("CRITICAL HIT!")
+                            print("The drone is down to half health")
+                            dronehealth -= 2
+                            break
+                        else:
+                            print("You gave away your cover!")
+                            print("It hits you!")
+                            health -= 1
+                            print("Your heath is now at", health)
+                            break
+                            
+                    elif dronecho == ("battle"):
+                        print("You charge at the drone!")
+                        print("It hits you!")
+                        health -= 1
+                        print("Your heath is now at", health)
+                        shot = int(input("Press '1' to fire at the drone: "))
+                        if shot == 1:
+                            print("CRITICAL HIT!")
+                            print("The drone is down to half health")
+                            dronehealth -= 2
+                            break
+                        else:
+                            print("You missed!")
+                            print("It hits you!")
+                            health -= 1
+                            print("Your heath is now at", health)
+                            break
+
                     
-            elif dronecho == ("battle"):
-                print("You charge at the drone!")
-                print("It hits you!")
-                health -= 1
-                print("Your heath is now at", health)
+                    else:
+                        print("I'm sorry I dont know that?")
+
+                print("Try shoot the drone!")
                 shot = int(input("Press '1' to fire: "))
                 if shot == 1:
-                    print("CRITICAL HIT!")
-                    print("The drone is down to half health")
-                    dronehealth -= 2
+                    print("You HIT!")
+                    dronehealth -= 1
+                    print("The drones health is at", dronehealth)
                 else:
                     print("You missed!")
-            else:
-                print("I'm sorry I dont know that?")
+                    print("It hits you!")
+                    health -= 1
+                    print("Your heath is now at", health)
+                    print("You need to step up your game!")
 
-            #Reast fo drone fight!
-        elif dronefight == ("no"):
-            print("Alright let's go a differant direction.")
+                print("I'm going to try hack the drone ")
+                print("There is a 50% chance this will work!")
+                hack = ("Hacking... \n")
+                for i in range(4):
+                    for char in hack:
+                        print(char, end='', flush=True)
+                        time.sleep(0.1)
+                dronehack = random.randint(1,2)
+                if dronehack == 1:
+                    print("Hack sucsesfull!")
+                    dronehealth = 0
+                    print("Drone disarmed")
+                    break
+                else:
+                    print("Hack failed!")
+                    print("Your on your own.")
+                    print("Sorry!")
+                    shot = int(input("Press '1' to fire: "))
+                    if shot == 1:
+                        print("You HIT!")
+                        dronehealth -= 3
+                        print("The drones health is at", dronehealth)
+                        break
+                    else:
+                        print("I'm done with you!")
+                        print("I HIT!")
+                        dronehealth = 0
+                        print("The drones health is at", dronehealth)
+                        break
+                        
+            elif dronefight == ("no"):
+                print("Alright let's go a differant direction.")
+            
+                dirtwo = random.choice(marketgames)
+
+                if dirtwo == ("drone"):
+                    gard()
+                    break
+                elif dirtwo == ("npc"):
+                    npc()
+                    break
+                elif dirtwo == ("gard"):
+                    gard()
+                    break
         
-            dirtwo = random.choice(marketgames)
+            else:
+                print("I'm sorry I don't know that?")
 
-            if dirtwo == ("drone"):
-                gard()
-                break
-            elif dirtwo == ("npc"):
-                npc()
-                break
-            elif dirtwo == ("gard"):
-                gard()
-                break
-        else:
-           print("I'm sorry I don't know that?")
+        if dronehealth == 0:
+            print("Great job!")
+            break
 def npc():
     print("NEED TO FINISH!")
 def gard():
@@ -164,3 +228,6 @@ def market():
         gard()
                
 drone()
+        
+
+
